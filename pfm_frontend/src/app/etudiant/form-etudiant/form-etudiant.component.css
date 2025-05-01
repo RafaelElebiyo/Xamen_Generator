@@ -1,0 +1,41 @@
+.register-prof-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .register-prof-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .register-prof-title {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .register-prof-form {
+    margin-bottom: 20px;
+  }
+  
+  .register-prof-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-check {
+    margin-bottom: 15px;
+  }
+  
+  .invalid-feedback {
+    color: red;
+    font-size: 0.8em;
+  }

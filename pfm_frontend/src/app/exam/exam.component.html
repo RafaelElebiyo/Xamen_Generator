@@ -1,0 +1,75 @@
+<div class="exam-container">
+  <!-- Exam intro screen -->
+  <div *ngIf="!examStarted && !examFinished" class="exam-intro">
+    <h2>{{ exam.nom }}</h2>
+    <div class="exam-meta">
+      <p><strong>Date:</strong> {{ exam.date | date }}</p>
+      <p><strong>Semestre:</strong> {{ exam.semestre }}</p>
+      <p><strong>Nombre de questions:</strong> {{ exam.questions.length }}</p>
+      <p><strong>Durée totale:</strong> {{ calculateTotalDuration() }} minutes</p>
+    </div>
+    <p class="exam-description">{{ exam.description }}</p>
+    
+    <div class="exam-instructions">
+      <h3>Instructions:</h3>
+      <ul>
+        <li>Vous aurez un temps limité pour chaque question</li>
+        <li>Le chronomètre passera automatiquement à la question suivante</li>
+        <li>Vous pouvez aussi passer manuellement à la question suivante</li>
+        <li>Vous ne pouvez pas revenir aux questions précédentes</li>
+      </ul>
+    </div>
+    
+    <button class="btn btn-dark" (click)="startExam()">Commencer l'examen</button>
+  </div>
+
+  <!-- Exam question screen -->
+  <div *ngIf="examStarted && !examFinished" class="question-screen">
+    <div class="question-header">
+      <h3>Question {{ currentQuestionIndex + 1 }} sur {{ exam.questions.length }}</h3>
+      <div class="timer">
+        <span class="time-remaining">Temps restant: {{ formatTime(timeLeft) }}</span>
+      </div>
+    </div>
+    
+    <div class="question-content">
+      <p class="question-text">{{ currentQuestion.texte }}</p>
+      
+      <div *ngIf="currentQuestion.imageUrl" class="question-image">
+        <img [src]="'http://localhost:8080' + getImageName(currentQuestion.imageUrl)" alt="Question image">
+      </div>
+      
+      <div *ngIf="currentQuestion.type === 'QCM'" class="question-options">
+        <div *ngFor="let option of currentQuestion.options; let i = index" class="option">
+          <input type="radio" 
+                 [name]="'q'+currentQuestionIndex" 
+                 [id]="'q'+currentQuestionIndex+'-opt'+i"
+                 [value]="option"
+                 [(ngModel)]="studentAnswers[currentQuestionIndex]">
+          <label [for]="'q'+currentQuestionIndex+'-opt'+i">{{ option }}</label>
+        </div>
+      </div>
+      
+      <div *ngIf="currentQuestion.type === 'DIRECT'" class="direct-answer">
+        <label for="answer">Votre réponse:</label>
+        <input type="text" 
+               id="answer" 
+               [(ngModel)]="studentAnswers[currentQuestionIndex]"
+               placeholder="Entrez votre réponse...">
+      </div>
+    </div>
+    
+    <div class="question-footer">
+      <button class="btn btn-dark" (click)="nextQuestion()">
+        {{ currentQuestionIndex < exam.questions.length - 1 ? 'Question suivante' : 'Terminer l\'examen' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Exam finished screen -->
+<div *ngIf="examFinished" class="exam-finished">
+  <h2>Examen terminé</h2>
+  <p>Merci d'avoir complété l'examen. Vos réponses ont été enregistrées.</p>
+  <button class="btn-submit" (click)="submitExam()">Soumettre les réponses</button>
+</div>
+</div>

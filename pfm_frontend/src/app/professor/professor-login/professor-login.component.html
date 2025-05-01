@@ -1,0 +1,19 @@
+<!-- src/app/professor/professor-login/professor-login.component.html -->
+<div class="modal-header">
+    <h4 class="modal-title">Connexion Professeur</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="login()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Mot de passe</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" required>
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+      <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>
+  </div>

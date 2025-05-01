@@ -1,0 +1,75 @@
+<!-- src/app/professor/register/register.component.html -->
+<div class="register-prof-container">
+  <button class="register-prof-close-btn btn btn-outline btn-sm" (click)="closeRegister()">
+    <i class="fas fa-times"></i>
+  </button>
+
+  <div class="register-prof-content">
+    <h3 class="register-prof-title">Inscription Professeur</h3>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-prof-form">
+      <div class="form-group">
+        <label for="register-prof-nom">Nom complet</label>
+        <input type="text" id="register-prof-nom" class="form-control" formControlName="nom" placeholder="Nom professeur">
+        @if (registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched) {
+          <div class="text-danger">Le nom est requis</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="register-prof-email">Email</label>
+        <input type="email" id="register-prof-email" class="form-control" formControlName="email"
+          placeholder="email@professionnel.com">
+        @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+          <div class="text-danger">Email invalide</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="register-prof-password">Mot de passe</label>
+        <input type="password" id="register-prof-password" class="form-control" formControlName="motDePasse"
+          placeholder="••••••••">
+        @if (registerForm.get('motDePasse')?.invalid && registerForm.get('motDePasse')?.touched) {
+          <div class="text-danger">Minimum 8 caractères requis</div>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="register-prof-confirm-password">Confirmer le mot de passe</label>
+        <input type="password" id="register-prof-confirm-password" class="form-control"
+          formControlName="confirmPassword" placeholder="••••••••">
+        @if (registerForm.hasError('mismatch') && registerForm.get('confirmPassword')?.touched) {
+          <div class="text-danger">Les mots de passe ne correspondent pas</div>
+        }
+      </div>
+
+      <div class="form-check mb-3">
+        <input type="checkbox" id="register-prof-terms" class="form-check-input" formControlName="acceptTerms">
+        <label for="register-prof-terms" class="form-check-label">J'accepte les termes et conditions</label>
+        @if (registerForm.get('acceptTerms')?.invalid && registerForm.get('acceptTerms')?.touched) {
+          <div class="text-danger">Vous devez accepter les termes</div>
+        }
+      </div>
+
+      @if (errorMessage) {
+        <div class="alert alert-danger">{{ errorMessage }}</div>
+      }
+
+      <button type="submit" class="register-prof-submit btn btn-dark" [disabled]="isLoading">
+        @if (!isLoading) {
+          <span>S'inscrire</span>
+        }
+        @if (isLoading) {
+          <span>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Enregistrement...
+          </span>
+        }
+      </button>
+    </form>
+
+    <div class="register-prof-footer">
+      <p>Déjà un compte? <a href="#" (click)="openLogin()">Se connecter</a></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="exams-container">
+  <div class="exams-header">
+    <h2><i class="fas fa-clipboard-list"></i> Résultats de l'examen</h2>
+  </div>
+
+  @if (resultats().length > 0) {
+    <div class="exam-table">
+      <div class="table-header">
+        <div class="header-cell">Nom complet</div>
+        <div class="header-cell">Note</div>
+        <div class="header-cell">Date de soumission</div>
+      </div>
+
+      <div class="table-body">
+        @for (resultat of resultats(); track resultat.id) {
+          <div class="table-row">
+            <div class="table-cell">
+              {{ resultat.etudiant.nom }}
+            </div>
+            <div class="table-cell">{{ resultat.note }}/20</div>
+            <div class="table-cell">
+              {{ resultat.dateSoumission | date:'short' }}
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="no-results">
+      <p>Aucun résultat disponible</p>
+    </div>
+  }
+</div>

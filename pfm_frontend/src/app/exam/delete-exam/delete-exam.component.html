@@ -1,0 +1,14 @@
+<div class="modal-container">
+    <div class="modal-header">
+      <h4>Confirmation de suppression</h4>
+    </div>
+    
+    <div class="modal-body">
+      <p>Vous êtes sûr de vouloir supprimer l'examen "<strong>{{examName}}</strong>" ?</p>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="btn btn-outline" (click)="cancel()">Annuler</button>
+      <button class="btn btn-dark" (click)="confirmDelete()">Oui</button>
+    </div>
+  </div>

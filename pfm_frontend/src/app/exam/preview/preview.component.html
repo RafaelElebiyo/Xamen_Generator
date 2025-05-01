@@ -1,0 +1,46 @@
+<div class="exam-container">
+    <div class="exam-header">
+      <h2>{{ exam.nom }}</h2>
+      <div class="exam-meta">
+        <p><strong>Date:</strong> {{ exam.date | date }}</p>
+        <p><strong>Semestre:</strong> {{ exam.semestre }}</p>
+        <p><strong>Professor:</strong> {{ exam.professor.nom }}</p>
+      </div>
+      <p class="exam-description">{{ exam.description }}</p>
+      <div *ngIf="exam.lienExamen" class="exam-link">
+        <strong>Lien examen:</strong> 
+        <a [href]="exam.lienExamen" target="_blank">{{ exam.lienExamen }}</a>
+      </div>
+    </div>
+  
+    <div class="questions-container">
+      <div *ngFor="let question of exam.questions; let i = index" class="question-card">
+        <div class="question-header">
+          <h3>Question {{ i + 1 }}</h3>
+          <span class="question-time">{{ question.tempsLimite }} Secondes</span>
+          <span class="question-type">{{ question.type }}</span>
+        </div>
+        
+        <div class="question-content">
+          <p class="question-text">{{ question.texte }}</p>
+          
+          <div *ngIf="question.imageUrl" class="question-image">
+            <img [src]="'http://localhost:8080' + getImageName(question.imageUrl)" alt="Question image">
+          </div>
+          
+          <div *ngIf="question.type === 'QCM' && question.options.length > 0" class="question-options">
+            <div *ngFor="let option of question.options" 
+                 class="option" 
+                 [class.correct]="option === question.reponseCorrecte">
+              {{ option }}
+            </div>
+          </div>
+          
+          <div *ngIf="question.type === 'DIRECT'" class="correct-answer">
+            <strong>Correct answer:</strong>
+            <div class="answer-value">{{ question.reponseCorrecte }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

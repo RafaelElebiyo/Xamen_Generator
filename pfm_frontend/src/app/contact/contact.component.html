@@ -1,0 +1,68 @@
+<div class="contact-modal-container">
+    <!-- Botón de cerrar -->
+    <button type="button" class="btn-close contact-close-btn" (click)="closeContact()" aria-label="Close"></button>
+  
+    <!-- Encabezado con iconos -->
+    <div class="contact-info-bar row g-3 mb-4">
+      <div class="col-md-4 contact-info-item">
+        <div class="contact-icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <div class="contact-info-text">
+          <h5>Email</h5>
+          <p></p>
+        </div>
+      </div>
+  
+      <div class="col-md-4 contact-info-item">
+        <div class="contact-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="contact-info-text">
+          <h5>Dirección</h5>
+          <p>Calle Principal 123, Ciudad</p>
+        </div>
+      </div>
+  
+      <div class="col-md-4 contact-info-item">
+        <div class="contact-icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <div class="contact-info-text">
+          <h5>Teléfono</h5>
+          <p>+123 456 7890</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Formulario de contacto -->
+    <h3 class="contact-form-title mb-4">Contáctanos</h3>
+    
+    <form class="contact-form">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="name" class="form-label">Nombre completo</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+        
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        
+        <div class="col-12">
+          <label for="subject" class="form-label">Asunto</label>
+          <input type="text" class="form-control" id="subject" required>
+        </div>
+        
+        <div class="col-12">
+          <label for="message" class="form-label">Mensaje</label>
+          <textarea class="form-control" id="message" rows="4" required></textarea>
+        </div>
+        
+        <div class="col-12 mt-3">
+          <button type="submit" class="btn btn-dark w-100">Enviar mensaje</button>
+        </div>
+      </div>
+    </form>
+  </div>

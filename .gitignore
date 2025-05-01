@@ -1,0 +1,10 @@
+# IDE y entornos de desarrollo
+.DS_Store
+.idea/
+*.iml
+.vscode/
+*.log
+
+# Sistemas operativos
+Thumbs.db
+

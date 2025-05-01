@@ -1,0 +1,23 @@
+.link-container {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .social-share-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  
+  /* Estilos para hacerlo responsive */
+  @media (max-width: 576px) {
+    .social-share-buttons {
+      flex-direction: column;
+    }
+    
+    .social-share-buttons button {
+      width: 100%;
+    }
+  }

@@ -1,0 +1,42 @@
+<div class="exams-container">
+  <div class="exams-header">
+    <h2><i class="fas fa-users"></i> Mes Étudiants</h2>
+    <div class="controls">
+      <button class="btn btn-dark" (click)="openEtudiantForm()">
+        <i class="fas fa-plus"></i> Nouvel étudiant
+      </button>
+    </div>
+  </div>
+
+  @if (etudiants().length > 0) {
+    <div class="exam-table">
+      <div class="table-header">
+        <div class="header-cell">Nom complet</div>
+        <div class="header-cell">Email</div>
+        <div class="header-cell">Actions</div>
+      </div>
+
+      <div class="table-body">
+        @for (etudiant of etudiants(); track etudiant.id) {
+          <div class="table-row">
+            <div class="table-cell">{{ etudiant.nom }}</div>
+            <div class="table-cell">{{ etudiant.email || '-' }}</div>
+            <div class="table-cell actions">
+              <button (click)="openEtudiantForm(etudiant)">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button (click)="deleteEtudiant(etudiant.id, etudiant.nom)" class="danger">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="no-exams">
+      <i class="fas fa-user-graduate"></i>
+      <p>Aucun étudiant disponible</p>
+    </div>
+  }
+</div>

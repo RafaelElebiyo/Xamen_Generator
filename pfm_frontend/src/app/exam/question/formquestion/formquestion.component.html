@@ -1,0 +1,72 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create New Question</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form (ngSubmit)="submitQuestion()">
+    <div class="form-group">
+      <label for="texte">Question Text</label>
+      <textarea class="form-control" id="texte" [(ngModel)]="questionData.texte" name="texte" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Question Type</label>
+      <select class="form-control" id="type" [(ngModel)]="questionData.type" name="type">
+        <option *ngFor="let type of questionTypes" [value]="type">{{type}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="tempsLimite">Time Limit (seconds)</label>
+      <input type="number" class="form-control" id="tempsLimite" [(ngModel)]="questionData.tempsLimite" name="tempsLimite" required>
+    </div>
+
+    <div class="form-group">
+      <label for="reponseCorrecte">Correct Answer</label>
+      <input type="text" class="form-control" id="reponseCorrecte" [(ngModel)]="questionData.reponseCorrecte" name="reponseCorrecte" required>
+    </div>
+
+    <div class="form-group">
+      <label for="score">Score</label>
+      <input type="number" class="form-control" id="score" [(ngModel)]="questionData.score" name="score" required>
+    </div>
+
+    <div class="form-group" *ngIf="questionData.type === 'QCM'">
+      <label>Options (for QCM)</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="tempOption" name="tempOption" placeholder="Add option">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="addOption()">Add</button>
+        </div>
+      </div>
+      <div class="options-container">
+        <div *ngFor="let option of questionData.options" class="option-item">
+            {{option}}
+            <button type="button" class="close" (click)="removeOption(option)">
+                <span>&times;</span>
+            </button>
+        </div>
+    </div>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Image (optional)</label>
+      <input type="file" class="form-control-file" id="image" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{errorMessage}}
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="close()">Cancel</button>
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        {{isLoading ? 'Creating...' : 'Create Question'}}
+      </button>
+    </div>
+  </form>
+</div>

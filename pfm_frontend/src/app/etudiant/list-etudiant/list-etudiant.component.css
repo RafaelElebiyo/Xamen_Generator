@@ -1,0 +1,173 @@
+.exams-container {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .modal-close {
+    text-align: right;
+    margin-bottom: 1rem;
+  }
+  
+  .exams-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .exam-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-header {
+    display: flex;
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 0.75rem 0;
+  }
+  
+  .header-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 0 0.5rem;
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  .table-body {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .table-row {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .table-cell {
+    flex: 1;
+    min-width: 120px;
+    padding: 0 0.5rem;
+  }
+  
+  .badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    margin-right: 0.5rem;
+    display: inline-block;
+  }
+  
+  .badge.qcm {
+    background: #e3f2fd;
+    color: #1976d2;
+  }
+  
+  .badge.direct {
+    background: #e8f5e9;
+    color: #388e3c;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+  
+  .actions button.danger {
+    color: #d32f2f;
+  }
+  
+  .no-exams {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }
+  
+  .no-exams i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #aaa;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .header-cell, .table-cell {
+      min-width: 100px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .exams-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .controls {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .exam-table {
+      display: block;
+    }
+    
+    .table-header {
+      display: none;
+    }
+    
+    .table-row {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    
+    .table-cell {
+      width: 100%;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    
+    .table-cell:last-child {
+      border-bottom: none;
+    }
+    
+    .table-cell::before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: inline-block;
+      width: 120px;
+    }
+    
+    .actions {
+      justify-content: flex-end;
+      width: 100%;
+      padding-top: 0.5rem;
+    }
+  }

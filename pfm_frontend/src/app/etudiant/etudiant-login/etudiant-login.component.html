@@ -1,0 +1,15 @@
+<!-- src/app/etudiant/etudiant-login/etudiant-login.component.html -->
+<div class="modal-header">
+    <h4 class="modal-title">Connexion Étudiant</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="login()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+      </div>
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+      <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>
+  </div>

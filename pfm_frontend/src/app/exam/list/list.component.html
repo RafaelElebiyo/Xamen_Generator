@@ -1,0 +1,64 @@
+<div class="exams-container">
+  <div class="exams-header">
+    <h2><i class="fas fa-clipboard-list"></i> Mes Examens</h2>
+    <div class="controls">
+      <input type="text" placeholder="Rechercher...">
+      <select>
+        <option>Tous les semestres</option>
+        <option>S1</option>
+        <option>S2</option>
+      </select>
+      <button class="btn btn-dark" (click)="openCreateModal()">
+        <i class="fas fa-plus"></i> Nouvel examen
+      </button>
+    </div>
+  </div>
+
+  @if (exams().length > 0) {
+    <div class="exam-table">
+      <div class="table-header">
+        <div class="header-cell">Matière</div>
+        <div class="header-cell">Description</div>
+        <div class="header-cell">Questions</div>
+        <div class="header-cell">Type</div>
+        <div class="header-cell">Durée (secondes)</div>
+        <div class="header-cell">Date</div>
+        <div class="header-cell">Semestre</div>
+        <div class="header-cell">Actions</div>
+      </div>
+
+      <div class="table-body">
+        @for (exam of exams(); track exam.id) {
+          <div class="table-row">
+            <div class="table-cell">{{ exam.nom }}</div>
+            <div class="table-cell">{{ exam.description || '-' }}</div>
+            <div class="table-cell">{{ exam.questions?.length || 0 }}</div>
+            <div class="table-cell">
+              @if (getQuestionTypes(exam.questions).QCM > 0) {
+                <span class="badge qcm">{{ getQuestionTypes(exam.questions).QCM }} QCM</span>
+              }
+              @if (getQuestionTypes(exam.questions).DIRECT > 0) {
+                <span class="badge direct">{{ getQuestionTypes(exam.questions).DIRECT }} Direct</span>
+              }
+            </div>
+            <div class="table-cell">{{ getTotalDuration(exam.questions) }}</div>
+            <div class="table-cell">{{ exam.date | date:'dd/MM/yyyy' }}</div>
+            <div class="table-cell">{{ exam.semestre }}</div>
+            <div class="table-cell actions">
+              <button (click)="shareLink(exam.lienExamen)"><i class="fas fa-share-alt"></i></button>
+              <button (click)="openResultModal(exam.id)"><i class="fas fa-chart-bar"></i></button>
+              <button (click)="openExamPreview(exam.id)"><i class="fas fa-eye"></i></button>
+              <button (click)="openEditModal(exam.id)"><i class="fas fa-edit"></i></button>
+              <button (click)="deleteExam(exam.id, exam.nom)" class="danger"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <div class="no-exams">
+      <i class="fas fa-clipboard-question"></i>
+      <p>Aucun examen disponible</p>
+    </div>
+  }
+</div>

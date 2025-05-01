@@ -1,0 +1,32 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+build/
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.springBeans
+.sts4-cache
+.apt_generated
+.factorypath
+
+# VS Code
+.vscode/
+
+# Archivos de ayuda
+HELP.md
+
+# Excepciones (mantén archivos de construcción en src)
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/

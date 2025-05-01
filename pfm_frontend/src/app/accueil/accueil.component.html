@@ -1,0 +1,97 @@
+<div class="hero-section">
+  <div class="hero-content">
+    <h1>XamenGenerator</h1>
+    <p class="tagline">La solution intelligente pour créer, gérer et analyser vos examens en ligne en toute simplicité</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">10,000+</span>
+        <span class="stat-label">examens créés</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">95%</span>
+        <span class="stat-label">temps gagné</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cards-container">
+  <!-- Card 1: Crear Examen -->
+  <div class="card card-primary">
+    <div class="card-badge">Populaire</div>
+    <div class="card-header">
+      <div class="card-icon">
+        <i class="fas fa-file-alt"></i>
+      </div>
+      <h3>Créer un examen</h3>
+    </div>
+    <div class="card-body">
+      <p>Créez des examens personnalisés avec différents types de questions, médias et minuteries.</p>
+      <ul class="card-features">
+        <li><i class="fas fa-check-circle"></i> 5 types de questions</li>
+        <li><i class="fas fa-check-circle"></i> Importation facile</li>
+        <li><i class="fas fa-check-circle"></i> Prévisualisation instantanée</li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary" (click)="openQuestionModal(1)">
+        <i class="fas fa-plus-circle"></i> Commencer
+      </button>
+    </div>
+  </div>
+
+  <!-- Card 2: Gestionar Exámenes -->
+  <div class="card card-success">
+    <div class="card-header">
+      <div class="card-icon">
+        <i class="fas fa-tasks"></i>
+      </div>
+      <h3>Mes examens</h3>
+    </div>
+    <div class="card-body">
+      <p>Gérez facilement tous vos examens en un seul endroit.</p>
+      <div class="storage-indicator">
+        <div class="storage-info">
+          <span>7/10 examens actifs</span>
+          <span>70% utilisé</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" style="width: 70%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-success" (click)="openExamenList()">
+        <i class="fas fa-folder-open"></i> Voir tout
+      </button>
+    </div>
+  </div>
+
+  <!-- Card 3: Resultados -->
+  <div class="card card-info">
+    <div class="card-header">
+      <div class="card-icon">
+        <i class="fas fa-chart-bar"></i>
+      </div>
+      <h3>Dernier examen</h3>
+    </div>
+    <div class="card-body">
+      <p>Statistiques détaillées pour mesurer les performances.</p>
+      <div class="analytics-preview">
+        <div class="analytics-item">
+          <div class="analytics-value">24</div>
+          <div class="analytics-label">Terminés</div>
+        </div>
+        <div class="analytics-item">
+          <div class="analytics-value">78%</div>
+          <div class="analytics-label">Moyenne</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-info" (click)="openResultatList()">
+        <i class="fas fa-chart-pie"></i> Voir plus
+      </button>
+    </div>
+  </div>
+</div>

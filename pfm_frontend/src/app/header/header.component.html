@@ -1,0 +1,72 @@
+<header class="header navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand logo" href="#" (click)="accueil()">
+      <span class="logo-part-light">Xamen</span>
+      <span class="logo-part-dark">Generator</span>
+    </a>
+
+    <!-- Botón hamburguesa -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú colapsable -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="accueil()">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="openContact()">Contact</a>
+        </li>
+
+        <!-- Menú dinámico para usuarios logueados -->
+        <ng-container *ngIf="isLoggedIn; else authButtons">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="etudiantDropdown" role="button" data-bs-toggle="dropdown">
+              Etudiants
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="etudiantDropdown">
+              <li><a class="dropdown-item" (click)="openEtudiantForm()">Ajouter des etudiants</a></li>
+              <li><a class="dropdown-item" (click)="openEtudiantList()">Mes etudiants</a></li>
+            </ul>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="examenDropdown" role="button" data-bs-toggle="dropdown">
+              Examens
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="examenDropdown">
+              <li><a class="dropdown-item" (click)="openExamenForm()">Créer</a></li>
+              <li><a class="dropdown-item" (click)="openExamenList()">Mes examens</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item ms-lg-2">
+            <div class="d-flex align-items-center">
+              <span class="badge bg-dark me-2">{{ professorName }}</span>
+              <button class="btn btn-sm btn-outline-dark" (click)="logout()" title="Déconnexion">
+                <i class="fas fa-sign-out-alt"></i>
+              </button>
+            </div>
+          </li>
+        </ng-container>
+
+        <!-- Botones de autenticación -->
+        <ng-template #authButtons>
+          <li class="nav-item ms-lg-2 my-2 my-lg-0">
+            <button class="btn btn-outline-dark" (click)="openLoginProf()">
+              <i class="fas fa-user me-1"></i> Connexion
+            </button>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <button class="btn btn-dark" (click)="openRegisterProf()">
+              <i class="fas fa-users me-1"></i> Inscription
+            </button>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</header>

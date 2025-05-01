@@ -1,0 +1,31 @@
+<div class="share-modal">
+    <div class="modal-header">
+      <h4 class="modal-title">Partager lien</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+    </div>
+    
+    <div class="modal-body">
+      <div class="link-container mb-3">
+        <input type="text" class="form-control" [value]="link" readonly>
+        <button class="btn btn-outline-secondary" (click)="copyToClipboard()">
+          {{ showCopiedMessage ? 'Copie!' : 'Copier' }}
+        </button>
+      </div>
+      
+      <div class="social-share-buttons">
+        <button class="btn btn-success me-2" (click)="shareOnWhatsApp()">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </button>
+        <button class="btn btn-primary me-2" (click)="shareOnFacebook()">
+          <i class="fab fa-facebook-f"></i> Facebook
+        </button>
+        <button class="btn btn-info" (click)="shareOnTwitter()">
+          <i class="fab fa-twitter"></i> Twitter
+        </button>
+      </div>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Fermer</button>
+    </div>
+  </div>

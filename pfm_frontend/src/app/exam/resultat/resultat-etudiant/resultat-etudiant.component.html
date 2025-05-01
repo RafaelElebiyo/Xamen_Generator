@@ -1,0 +1,60 @@
+<div class="result-container">
+  <!-- Datos del examen -->
+  <div class="exam-info">
+    <h2>Examen: {{ exam()?.nom }}</h2>
+    <div class="exam-details">
+      <p><strong>Date:</strong> {{ exam()?.date | date:'mediumDate' }}</p>
+      <p><strong>Semestre:</strong> {{ exam()?.semestre }}</p>
+      <p><strong>Description:</strong> {{ exam()?.description }}</p>
+    </div>
+  </div>
+
+  <!-- Datos del estudiante -->
+  <div class="student-info">
+    <h3>Étudiant: {{ etudiant()?.nom }}</h3>
+    <p><strong>Email:</strong> {{ etudiant()?.email }}</p>
+    <div class="result-summary">
+      <p><strong>Note finale:</strong> {{ resultat()?.note }}/20</p>
+      <p><strong>Date de soumission:</strong> {{ resultat()?.dateSoumission | date:'medium' }}</p>
+    </div>
+  </div>
+
+  <!-- Lista de preguntas y respuestas -->
+  <div class="questions-list">
+    <h3>Détail des questions</h3>
+    
+    <div *ngFor="let question of questions(); let i = index" class="question-item">
+      <div class="question-header">
+        <h4>Question {{ i + 1 }} <span class="time-limit">({{ question.tempsLimite }} secondes)</span></h4>
+        <span class="question-type">{{ question.type }}</span>
+      </div>
+      
+      <div class="question-text">
+        {{ question.texte }}
+      </div>
+      
+      <!-- Respuesta correcta -->
+      <div class="correct-answer">
+        <strong>Réponse correcte:</strong>
+        <div class="answer-value correct-bg">
+          {{ question.reponseCorrecte }}
+        </div>
+      </div>
+      
+      <!-- Respuesta del estudiante -->
+      <div class="student-answer">
+        <strong>Votre réponse:</strong>
+        <div class="answer-value" 
+             [class.correct-bg]="isCorrectAnswer(question, reponses()[i])"
+             [class.incorrect-bg]="!isCorrectAnswer(question, reponses()[i])">
+          {{ reponses()[i]?.reponse || 'Non répondue' }}
+        </div>
+        <span class="score-badge" 
+              [class.correct-score]="isCorrectAnswer(question, reponses()[i])"
+              [class.incorrect-score]="!isCorrectAnswer(question, reponses()[i])">
+          {{ isCorrectAnswer(question, reponses()[i]) ? '+' + question.score : '0' }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
